@@ -1,6 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRoute from "./routes/auth.js"; 
+import usersRoute from "./routes/users.js"; 
+import servicesRoute from "./routes/services.js"; 
+import motoboysRoute from "./routes/motoboys.js"; 
 const app = express();
 dotenv.config();
 
@@ -20,6 +24,15 @@ mongoose.connection.on("disconnected", () => {
 mongoose.connection.on("connected", () => {
     console.log("MongoDB conectado");
 })
+
+//middlewares
+
+app.use(express.json());
+
+app.use("/auth", authRoute);
+app.use("/users", usersRoute);
+app.use("/services", servicesRoute);
+app.use("/motoboys", motoboysRoute);
 
 // requisicao 
 app.listen(8800, () => {
