@@ -27,12 +27,24 @@ mongoose.connection.on("connected", () => {
 
 //middlewares
 
+
 app.use(express.json());
 
 app.use("/auth", authRoute);
 app.use("/users", usersRoute);
 app.use("/services", servicesRoute);
 app.use("/motoboys", motoboysRoute);
+
+app.use((err, req,res,next) => {
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || "Algo está errado !";
+    return res.status(500).json({
+        sucess:false,
+        status:errorStatus,
+        message:errorMessage,
+        stack: err.stack,
+    })
+});
 
 // requisicao 
 app.listen(8800, () => {

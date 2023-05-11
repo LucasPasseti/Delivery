@@ -1,24 +1,23 @@
 import express from 'express';
 import Service from '../models/Service.js';
+import { createService, deleteService, getAllservice, getService, updateService } from '../controllers/service.js';
 
 const router = express.Router();
 
 //CREATE
-router.post("/", async (req,res) => {
+router.post("/", createService);
 
-    const newService = new Service(req.body);
-
-    try{
-        const savedService = await newService.save();
-        res.status(200).json(savedService);
-    }catch(err) {
-        res.status(500).json(err);
-    } 
-})
 //UPDATE
+router.put("/:id", updateService);
+
 //DELETE
+router.delete("/:id", deleteService);
+
 //GET
+router.get("/:id", getService);
+
 //GET ALL
+router.get("/", getAllservice);
 
 
 export default router;
