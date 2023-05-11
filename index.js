@@ -5,6 +5,8 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js"; 
 import servicesRoute from "./routes/services.js"; 
 import motoboysRoute from "./routes/motoboys.js"; 
+import cookieParser from "cookie-parser";
+
 const app = express();
 dotenv.config();
 
@@ -26,8 +28,7 @@ mongoose.connection.on("connected", () => {
 })
 
 //middlewares
-
-
+app.use(cookieParser());
 app.use(express.json());
 
 app.use("/auth", authRoute);
