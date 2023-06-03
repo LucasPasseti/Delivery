@@ -32,9 +32,9 @@ export const login = async (req, res, next)=>{
         if(!isPasswordCorrect) return next(createError(400, "Sua senha ou usuário está errado"));
 
         //cookie e token
-        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin}, process.env.JWT)
+        const token = jwt.sign({id:user._id, isAdmin:user.isAdmin, isEstablishment:user.isEstablishment,}, process.env.JWT)
 
-         const {password, isAdmin, ...otherDetails} = user._doc;
+         const {password, isEstablishment, isAdmin, ...otherDetails} = user._doc;
         res.cookie("access_token", token, {
             httpOnly: true,
         }).status(200).json({...otherDetails});

@@ -1,7 +1,7 @@
 import express from 'express';
 import Service from '../models/Service.js';
 import { createService, deleteService, getAllservice, getService, updateService } from '../controllers/service.js';
-import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
+import { verifyAdmin, verifyEstablishment, verifyUser } from '../utils/verifyToken.js';
 
 const router = express.Router();
 

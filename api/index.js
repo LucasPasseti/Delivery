@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js"; 
 import servicesRoute from "./routes/services.js"; 
 import motoboysRoute from "./routes/motoboys.js"; 
+import productsRoute from "./routes/products.js"; 
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/users", usersRoute);
 app.use("/services", servicesRoute);
+app.use("/products", productsRoute);
 app.use("/motoboys", motoboysRoute);
 
 app.use((err, req,res,next) => {
