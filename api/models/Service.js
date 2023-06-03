@@ -6,6 +6,10 @@ const ServiceSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    cnpj:{
+        type: String,
+        required:true
+    },
     type:{
         type: String,
         required:true
@@ -38,7 +42,7 @@ const ServiceSchema = new mongoose.Schema({
         min:0,
         max:5,
     },
-    motoboys:{
+    products:{
         type:[String],
     },
     cheaprestPrice:{         //Preco mais barato

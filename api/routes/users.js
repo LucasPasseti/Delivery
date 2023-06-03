@@ -12,9 +12,9 @@ const router = express.Router();
 //    res.send("Olá usuário, você está logado e pode deletar sua conta quando quiser");
 //  })
 
-// router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
-//    res.send("Olá admin, você está logado e pode deletar todas as contas");
-//  })
+router.get("/checkadmin/:id", verifyAdmin, (req,res,next)=>{
+   res.send("Olá admin, você está logado e pode deletar todas as contas");
+ })
 
 //UPDATE
 router.put("/:id", verifyUser, updateUser);
