@@ -14,14 +14,15 @@ export const verifyToken = (req, res, next) => {
 };
 
 export const verifyUser = (req, res, next) => {
-    verifyToken(req, res , next, () => {
-        if(req.user.id === req.params.id ||req.user.isAdmin) {
-            next();
-        } else {
-            return next(createError(403, "Você não está autorizado!"));
-        }
-    })
-}
+    verifyToken(req, res, () => {
+      const { id, isAdmin, isEstablishment } = req.user;
+      if (id === req.params.id || isAdmin || isEstablishment) {
+        next();
+      } else {
+        return next(createError(403, "Você não está autorizado!"));
+      }
+    });
+  };
 
 export const verifyAdmin = (req, res, next) => {
     verifyToken(req, res , () => {
@@ -34,11 +35,12 @@ export const verifyAdmin = (req, res, next) => {
 }
 
 export const verifyEstablishment = (req, res, next) => {
-    verifyToken(req, res , () => {
-        if(req.user.isEstablishment) {
-            next();
-        } else {
-            return next(createError(403, "Você não está autorizado!"));
-        }
-    })
-}
+    verifyToken(req, res, () => {
+      const { isEstablishment } = req.user;
+      if (isEstablishment) {
+        next();
+      } else {
+        return next(createError(403, "Você não está autorizado!"));
+      }
+    });
+  };

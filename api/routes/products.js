@@ -5,15 +5,27 @@ import { verifyAdmin, verifyEstablishment, verifyUser } from '../utils/verifyTok
 
 const router = express.Router();
 
+// Middleware de verificação combinada para administração ou estabelecimento
+const verifyAdminOrEstablishment = (req, res, next) => {
+    verifyAdmin(req, res, (err) => {
+      if (err) {
+        verifyEstablishment(req, res, next);
+      } else {
+        next();
+      }
+    });
+  };
+
+
 //CREATE
-router.post("/:productid", verifyAdmin || verifyEstablishment, createProduct);
+router.post("/:productid", verifyAdminOrEstablishment , createProduct);
 
 //UPDATE
 // router.put("/availability/:id", updateProductAvailability);
-router.put("/:id", verifyAdmin || verifyEstablishment, updateProduct);
+router.put("/:id", verifyAdminOrEstablishment , updateProduct);
 
 //DELETE
-router.delete("/:id/:productid", verifyAdmin || verifyEstablishment, deleteProduct);
+router.delete("/:id/:productid", verifyAdminOrEstablishment, deleteProduct);
 
 //GET
 router.get("/:id", getProduct);
