@@ -18,14 +18,14 @@ const verifyAdminOrEstablishment = (req, res, next) => {
 
 
 //CREATE
-router.post("/:productid", verifyAdminOrEstablishment , createProduct);
+router.post("/:serviceid", verifyAdminOrEstablishment , createProduct);
 
 //UPDATE
 // router.put("/availability/:id", updateProductAvailability);
 router.put("/:id", verifyAdminOrEstablishment , updateProduct);
 
 //DELETE
-router.delete("/:id/:productid", verifyAdminOrEstablishment, deleteProduct);
+router.delete("/:id/:serviceid", verifyAdminOrEstablishment, deleteProduct);
 
 //GET
 router.get("/:id", getProduct);
