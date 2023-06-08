@@ -49,15 +49,19 @@ export const getService = async (req, res, next) => {
 }
 
 export const getAllservice = async (req, res, next) => {
+  const { min, max, limit, ...others } = req.query;
+  try {
+    const query = {
+      ...others,
+      cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+    };
 
-    try{
-        const services = await Service.find();
-
-        res.status(200).json(services);
-    }catch(err) {
-        next(err);
-    } 
-}
+    const services = await Service.find(query).limit(parseInt(limit));
+    res.status(200).json(services);
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const countByCity = async (req, res, next) => {
     const cities = req.query.cities.split(",");
@@ -75,18 +79,18 @@ export const countByCity = async (req, res, next) => {
 
   export const countByType = async (req, res, next) => { // criando tipos de estabelecimentos, comida, mercado etc...
     try {
-      const serviceCount = await Service.countDocuments({ type: "service" });
       const foodCount = await Service.countDocuments({ type: "food" });
+      const constructionCount = await Service.countDocuments({ type: "construction" });
       const pharmacyCount = await Service.countDocuments({ type: "pharmacy" });
       const toolCount = await Service.countDocuments({ type: "tool" });
       const marketCount = await Service.countDocuments({ type: "market" });
   
       res.status(200).json([
-        { type: "service", count: serviceCount },
-        { type: "foods", count: foodCount },
-        { type: "pharmacys", count: pharmacyCount },
-        { type: "tools", count: toolCount },
-        { type: "markets", count: marketCount },
+        { type: "Comidas", count: foodCount },
+        { type: "Construções", count: constructionCount },
+        { type: "Farmácias", count: pharmacyCount },
+        { type: "Ferramentas", count: toolCount },
+        { type: "Mercados", count: marketCount },
       ]);
     } catch (err) {
       next(err);

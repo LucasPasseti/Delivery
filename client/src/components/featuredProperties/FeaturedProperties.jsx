@@ -1,50 +1,36 @@
 import "./freaturedProperties.css";
+import useFetch from '../../hooks/useFetch';
 
 const FeaturedProperties = () => {
+    const { data, loading, error } = useFetch("/services?featured=true&limit=5");
+
+
     return (
         <div className="fp">
-            <div className="fpItem">
-                <img src="https://classic.exame.com/wp-content/uploads/2020/06/FSOU5966-e1593018039232-1.jpg?quality=70&strip=info&w=1024" alt="" className="fpImg" />
-                <span className="fpName">Encanamentos e Cia</span>
-                <span className="fpCity">Rio Preto</span>
-                <span className="fpPrice">Preço Inicial R$20</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excelente</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src="https://classic.exame.com/wp-content/uploads/2020/06/FSOU5966-e1593018039232-1.jpg?quality=70&strip=info&w=1024" alt="" className="fpImg" />
-                <span className="fpName">Encanamentos e Cia</span>
-                <span className="fpCity">Rio Preto</span>
-                <span className="fpPrice">Preço Inicial R$20</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excelente</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src="https://classic.exame.com/wp-content/uploads/2020/06/FSOU5966-e1593018039232-1.jpg?quality=70&strip=info&w=1024" alt="" className="fpImg" />
-                <span className="fpName">Encanamentos e Cia</span>
-                <span className="fpCity">Rio Preto</span>
-                <span className="fpPrice">Preço Inicial R$20</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excelente</span>
-                </div>
-            </div>
-            <div className="fpItem">
-                <img src="https://classic.exame.com/wp-content/uploads/2020/06/FSOU5966-e1593018039232-1.jpg?quality=70&strip=info&w=1024" alt="" className="fpImg" />
-                <span className="fpName">Encanamentos e Cia</span>
-                <span className="fpCity">Rio Preto</span>
-                <span className="fpPrice">Preço Inicial R$20</span>
-                <div className="fpRating">
-                    <button>8.9</button>
-                    <span>Excelente</span>
-                </div>
-            </div>
-        </div>
-    )
-}
+        {loading ? (
+          "Loading"
+        ) : (
+          <>
+            {data.map((item) => (
+              <div className="fpItem" key={item._id}>
+                <img
+                  src={item.photos[0]}
+                  alt=""
+                  className="fpImg"
+                />
+                <span className="fpName">{item.name}</span>
+                <span className="fpCity">{item.city}</span>
+                <span className="fpPrice">Preço Inicial R${item.cheapestPrice}</span>
+                {item.rating && <div className="fpRating">
+                  <button>{item.rating}</button>
+                  <span>Excellent</span>
+                </div>}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+    );
+  };
 
 export default FeaturedProperties

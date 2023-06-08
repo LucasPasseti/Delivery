@@ -45,7 +45,7 @@ const ServiceSchema = new mongoose.Schema({
     products:{
         type:[String],
     },
-    cheaprestPrice:{         //Preco mais barato
+    cheapestPrice:{         //Preco mais barato
         type: Number,
         required: true        
     },
