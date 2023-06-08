@@ -1,6 +1,6 @@
 import express from 'express';
 import Service from '../models/Service.js';
-import { createService, deleteService, getAllservice, getService, updateService } from '../controllers/service.js';
+import { countByCity, countByType, createService, deleteService, getAllservice, getService, updateService } from '../controllers/service.js';
 import { verifyAdmin, verifyEstablishment, verifyUser } from '../utils/verifyToken.js';
 
 const router = express.Router();
@@ -15,10 +15,13 @@ router.put("/:id", verifyAdmin, updateService);
 router.delete("/:id", verifyAdmin, deleteService);
 
 //GET
-router.get("/:id", getService);
+router.get("/find/:id", getService);
 
 //GET ALL
+
 router.get("/", getAllservice);
+router.get("/countByCity", countByCity);
+router.get("/countByType", countByType);
 
 
 export default router;
