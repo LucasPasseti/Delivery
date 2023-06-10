@@ -62,7 +62,6 @@ export const getAllservice = async (req, res, next) => {
     next(err);
   }
 };
-
 export const countByCity = async (req, res, next) => {
     const cities = req.query.cities.split(",");
     try {
@@ -79,18 +78,18 @@ export const countByCity = async (req, res, next) => {
 
   export const countByType = async (req, res, next) => { // criando tipos de estabelecimentos, comida, mercado etc...
     try {
-      const foodCount = await Service.countDocuments({ type: "food" });
       const constructionCount = await Service.countDocuments({ type: "construction" });
+      const foodCount = await Service.countDocuments({ type: "food" });
       const pharmacyCount = await Service.countDocuments({ type: "pharmacy" });
       const toolCount = await Service.countDocuments({ type: "tool" });
       const marketCount = await Service.countDocuments({ type: "market" });
   
       res.status(200).json([
-        { type: "Comidas", count: foodCount },
-        { type: "Construções", count: constructionCount },
-        { type: "Farmácias", count: pharmacyCount },
-        { type: "Ferramentas", count: toolCount },
-        { type: "Mercados", count: marketCount },
+        { type: "construction", count: constructionCount },
+        { type: "foods", count: foodCount },
+        { type: "pharmacys", count: pharmacyCount },
+        { type: "tools", count: toolCount },
+        { type: "markets", count: marketCount },
       ]);
     } catch (err) {
       next(err);

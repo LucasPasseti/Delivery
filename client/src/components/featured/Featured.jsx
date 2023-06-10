@@ -2,7 +2,7 @@ import useFetch from "../../hooks/useFetch";
 import "./featured.css";
 
 const Featured = () => {
-  const { data, loading, error } = useFetch("/services/countByCity?cities=Jales,Votuporanga,Fernandópolis");
+  const { data, loading } = useFetch("/services/countByCity?cities=Jales,Votuporanga,Fernandópolis");
 
 
   return (
