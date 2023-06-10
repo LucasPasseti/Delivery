@@ -10,17 +10,18 @@ import {
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import "./header.css";
   import { DateRange } from "react-date-range";
-  import { useState } from "react";
+  import { useContext, useState } from "react";
   import "react-date-range/dist/styles.css"; // main css file
   import "react-date-range/dist/theme/default.css"; // theme css file
   import { format } from "date-fns";
   import { useNavigate } from "react-router-dom";
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
+import { SearchContext } from "../context/SearchContext";
   
   const Header = ({ type }) => {
     const [destination, setDestination] = useState("");
     const [openDate, setOpenDate] = useState(false);
-    const [date, setDate] = useState([
+    const [dates, setDates] = useState([
       {
         startDate: new Date(),
         endDate: new Date(),
@@ -44,9 +45,13 @@ import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
         };
       });
     };
+
+    const {dispatch} = useContext(SearchContext);
+    
   
     const handleSearch = () => {
-      navigate("/services", { state: { destination, date, options } });
+      dispatch({type:"NEW_SEARCH", payload:{destination,dates, options}})
+      navigate("/services", { state: { destination, dates, options } });
     };
   
     return (
@@ -102,16 +107,16 @@ import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
                   <span
                     onClick={() => setOpenDate(!openDate)}
                     className="headerSearchText"
-                  >{`${format(date[0].startDate, "MM/dd/yyyy")} até ${format(
-                    date[0].endDate,
+                  >{`${format(dates[0].startDate, "MM/dd/yyyy")} até ${format(
+                    dates[0].endDate,
                     "MM/dd/yyyy"
                   )}`}</span>
                   {openDate && (
                     <DateRange
                       editableDateInputs={true}
-                      onChange={(item) => setDate([item.selection])}
+                      onChange={(item) => setDates([item.selection])}
                       moveRangeOnFirstSelection={false}
-                      ranges={date}
+                      ranges={dates}
                       className="date"
                       minDate={new Date()}
                     />
