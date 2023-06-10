@@ -6,10 +6,13 @@ import "./service.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
+import useFetch from "../../hooks/useFetch"
 
 const Service = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+
+
 
   const photos = [
     {

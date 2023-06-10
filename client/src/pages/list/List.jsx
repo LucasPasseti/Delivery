@@ -6,14 +6,23 @@ import { useState } from "react"
 import { format } from "date-fns"
 import { DateRange } from "react-date-range"
 import SearchItem from "../../components/searchItem/SearchItem"
+import useFetch from "../../hooks/useFetch"
 
 const List = () => {
 
   const location = useLocation()
-const [destination, /*setDestination*/] = useState(location.state.destination);
+  const [destination, /*setDestination*/] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, /*setOptions*/] = useState(location.state.options);
+  const [min, setMin] = useState(undefined);
+  const [max, setMax] = useState(undefined);
+
+  const { data, loading, error, reFetch } = useFetch(`/services?city=${destination}&min=${min || 0 }&max=${max || 999}`);
+
+  const handleClick = () => {
+    reFetch();
+  }
 
   return (
     <div>
@@ -25,7 +34,6 @@ const [destination, /*setDestination*/] = useState(location.state.destination);
             <h1 className="lsTitle">Buscar</h1>
             <div className="lsItem">
               <label>Destino</label>
-              <input type="text" />
               <input placeholder={destination} type="text" />
             </div>
             <div className="lsItem">
@@ -46,15 +54,15 @@ const [destination, /*setDestination*/] = useState(location.state.destination);
 
                   <div className="lsOptionItem">
                     <span className="lsOptionText">
-                      Preço máximo <small>Por Corrida</small>
+                      Preço minimo <small>Por Corrida</small>
                     </span>
-                    <input type="text" className="lsOptionInput" />
+                    <input type="text"  onChange={(e)=>setMin(e.target.value)} className="lsOptionInput" />
                   </div>
                   <div className="lsOptionItem">
                     <span className="lsOptionText">
-                      Preço minimo <small>Por Corrida</small>
+                      Preço máximo <small>Por Corrida</small>
                     </span>
-                    <input type="text" className="lsOptionInput" />
+                    <input type="text" onChange={(e)=>setMax(e.target.value)} className="lsOptionInput" />
                   </div>
                   <div className="lsOptionItem">
                     <span className="lsOptionText">
@@ -77,17 +85,16 @@ const [destination, /*setDestination*/] = useState(location.state.destination);
                 </div>
               </div>
             </div>
-            <button>Search</button>
+            <button onClick={handleClick}>Search</button>
           </div>
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {loading ? "loading" : <>
+            {data.map(item=>(
+
+              <SearchItem item={item} key={item._id}/>
+
+            ))}
+            </>}
           </div>
         </div>
       </div>
