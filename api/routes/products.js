@@ -1,6 +1,6 @@
 import express from 'express';
 import Product from '../models/Product.js';
-import { createProduct, deleteProduct, getAllProduct, getProduct, updateProduct } from '../controllers/product.js';
+import { createProduct, deleteProduct, getAllProduct, getProduct, updateProduct, updateProductAvailability } from '../controllers/product.js';
 import { verifyAdmin, verifyEstablishment, verifyUser } from '../utils/verifyToken.js';
 
 const router = express.Router();
@@ -23,6 +23,7 @@ router.post("/:serviceid", verifyAdminOrEstablishment , createProduct);
 //UPDATE
 // router.put("/availability/:id", updateProductAvailability);
 router.put("/:id", verifyAdminOrEstablishment , updateProduct);
+router.put("/availability/:id", updateProductAvailability);
 
 //DELETE
 router.delete("/:id/:serviceid", verifyAdminOrEstablishment, deleteProduct);

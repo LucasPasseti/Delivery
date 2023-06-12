@@ -36,6 +36,22 @@ export const updateProduct = async (req, res, next) => {
     } 
 }
 
+export const updateProductAvailability = async (req, res, next) => {
+  try {
+    await Product.updateOne(
+      { "productNumbers._id": req.params.id },
+      {
+        $push: {
+          "productNumbers.$.unavailableDates": req.body.dates
+        },
+      }
+    );
+    res.status(200).json("Produto está atualizado.");
+  } catch (err) {
+    next(err);
+  }
+};
+
 
   export const deleteProduct = async (req, res, next) => {
     const serviceId = req.params.serviceid;
