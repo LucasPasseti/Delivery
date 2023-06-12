@@ -12,7 +12,7 @@ const Featured = () => {
         <>
           <div className="featuredItem">
             <img
-              src="https://media.seudinheiro.com/uploads/2022/03/mcdonalds.jpg"
+              src="https://focalizando.com.br/sites/default/files/2023-03/promocao-subway-do-dia-atualizado-2023.jpg"
               alt=""
               className="featuredImg"
             />
@@ -24,7 +24,7 @@ const Featured = () => {
 
           <div className="featuredItem">
             <img
-              src="https://media.seudinheiro.com/uploads/2022/03/mcdonalds.jpg"
+              src="https://retailinsider.b-cdn.net/wp-content/uploads/2021/11/DJI_0246_skrpl-scaled.jpg"
               alt=""
               className="featuredImg"
             />

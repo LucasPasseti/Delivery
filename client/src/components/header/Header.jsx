@@ -17,6 +17,7 @@ import {
   import { useNavigate } from "react-router-dom";
 import { faAddressCard } from "@fortawesome/free-regular-svg-icons";
 import { SearchContext } from "../context/SearchContext";
+import { AuthContext } from "../context/AuthContext";
   
   const Header = ({ type }) => {
     const [destination, setDestination] = useState("");
@@ -36,6 +37,7 @@ import { SearchContext } from "../context/SearchContext";
     });
   
     const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
   
     const handleOption = (name, operation) => {
       setOptions((prev) => {
@@ -91,7 +93,7 @@ import { SearchContext } from "../context/SearchContext";
               <p className="headerDesc">
               Não precisa mais se preocupar com preço e qualidade, com MotoLivre você conta com as ofertas mais incriveis do mercado.
               </p>
-              <button className="headerBtn">Entrar / Registrar</button>
+              {!user && <button className="headerBtn">Entrar / Registrar</button>}
               <div className="headerSearch">
                 <div className="headerSearchItem">
                   <FontAwesomeIcon icon={faAddressCard} className="headerIcon" />

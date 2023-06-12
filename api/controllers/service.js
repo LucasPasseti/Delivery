@@ -1,3 +1,4 @@
+import Product from "../models/Product.js";
 import Service from "../models/Service.js";
 
 export const createService = async (req, res, next) => {
@@ -96,3 +97,21 @@ export const countByCity = async (req, res, next) => {
     }
   };
 
+ 
+export const getServiceProducts = async (req, res, next) => {
+  try {
+    const service = await Service.findById(req.params.id);
+    
+    if (!service) {
+      return res.status(404).json({ error: 'Service not found' });
+    }
+    
+    const productIds = service.products; // Array de IDs dos produtos do serviço
+    
+    const products = await Product.find({ _id: { $in: productIds } }); // Encontra todos os produtos cujos IDs estão no array
+    
+    res.status(200).json(products);
+  } catch (err) {
+    next(err);
+  }
+};
