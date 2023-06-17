@@ -11,7 +11,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import { serviceColumns, productColumns, userColumns } from "./datatablesource";
 import NewService from "./pages/newService/NewService";
-import NewProduct from "./pages/newProductNewProduct/NewProduct";
+import NewProduct from "./pages/newProduct/NewProduct";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
