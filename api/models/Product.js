@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    maxPeople: {
+    maxPrice: {
       type: Number,
       required: true,
     },

@@ -32,7 +32,7 @@ const Datatable = ({columns}) => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton">Visualizar</div>
             </Link>
             <div
               className="deleteButton"
@@ -50,7 +50,7 @@ const Datatable = ({columns}) => {
       <div className="datatableTitle">
         {path}
         <Link to={`/${path}/new`} className="link">
-          Adicionar Novo
+          Adicionar 
         </Link>
       </div>
       <DataGrid
