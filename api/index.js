@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.js"; 
 import usersRoute from "./routes/users.js"; 
 import servicesRoute from "./routes/services.js"; 
-import motoboysRoute from "./routes/motoboys.js"; 
+// import motoboysRoute from "./routes/motoboys.js"; 
 import productsRoute from "./routes/products.js"; 
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -38,7 +38,7 @@ app.use("/auth", authRoute);
 app.use("/users", usersRoute);
 app.use("/services", servicesRoute);
 app.use("/products", productsRoute);
-app.use("/motoboys", motoboysRoute);
+// app.use("/motoboys", motoboysRoute);
 
 app.use((err, req,res,next) => {
     const errorStatus = err.status || 500;
