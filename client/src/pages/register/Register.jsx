@@ -10,12 +10,12 @@ const Register = () => {
     username: undefined,
     password: undefined,
     email: undefined,
-    cpf: undefined
+    cpf: undefined,
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -25,47 +25,45 @@ const Register = () => {
     e.preventDefault();
     dispatch({ type: "REGISTER_START" });
     try {
-      const res = await axios.post("/auth/register", credentials);
-      dispatch({ type: "REGISTER_SUCCESS", payload: res.data.details });
-      navigate("/")
+      await axios.post("/auth/register", credentials);
+      navigate("/");
     } catch (err) {
       dispatch({ type: "REGISTER_FAILURE", payload: err.response.data });
     }
   };
 
-
   return (
-    <div className="register">
-      <div className="rContainer">
+    <div className="registers">
+      <div className="register-container">
         <input
           type="text"
           placeholder="username"
           id="username"
           onChange={handleChange}
-          className="rInput"
+          className="register-input"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
-          className="rInput"
+          className="register-input"
         />
         <input
           type="email"
           placeholder="email"
           id="email"
           onChange={handleChange}
-          className="rInput"
+          className="register-input"
         />
         <input
           type="text"
           placeholder="CPF"
           id="cpf"
           onChange={handleChange}
-          className="rInput"
+          className="register-input"
         />
-        <button disabled={loading} onClick={handleClick} className="rButton">
+        <button disabled={loading} onClick={handleClick} className="register-button">
           Register
         </button>
         {error && <span>{error.message}</span>}

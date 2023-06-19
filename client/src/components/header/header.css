@@ -27,7 +27,15 @@
     align-items: center;
     gap: 10px;
 }
-
+.headerListItem .link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-orientation: none;
+    outline: none;
+    color: inherit; /* ou outra cor desejada */
+    text-decoration: none; /* remover decoração de sublinhado */
+  }
 .headerListItem.active {
     border: 1px solid black;
     padding: 10px;

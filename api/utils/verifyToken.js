@@ -44,3 +44,14 @@ export const verifyEstablishment = (req, res, next) => {
       }
     });
   };
+
+  export const verifyMotoboy = (req, res, next) => {
+    verifyToken(req, res, () => {
+      const { isMotoboy } = req.user;
+      if (isMotoboy) {
+        next();
+      } else {
+        return next(createError(403, "Você não está autorizado como motoboy!"));
+      }
+    });
+  };

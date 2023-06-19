@@ -1,32 +1,32 @@
-.login {
+.registers {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.lContainer {
+.register-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.lInput{
+.register-input {
   height: 30px;
   padding: 10px;
 }
 
-.lButton {
+.register-button {
   border: none;
   padding: 10px 20px;
-  background-color: rgb(169,169,169);
+  background-color: rgb(169, 169, 169);
   color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
 }
 
-.lButton:disabled{
+.register-button:disabled {
   background-color: #0071c28c;
   cursor: not-allowed;
 }

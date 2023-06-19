@@ -1,0 +1,115 @@
+.motoboyList {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+
+.motoboyList h2 {
+  margin-top: 0;
+}
+
+.motoboyList ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.motoboyList li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.motoboyList li:hover {
+  background-color: #f9f9f9;
+}
+
+.motoboyList li:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.motoboyList li img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.motoboyList .details {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.motoboyList .details h3 {
+  margin-top: 0;
+}
+
+.motoboyList .details p {
+  margin: 5px 0;
+}
+
+.motoboyList .details button {
+  padding: 10px 20px;
+  background-color: #cccccc;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.motoboyList .details button:hover {
+  background-color: #999999;
+}
+
+.addMotoboyButton {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #a9a9a9;
+  color: #f5f5f5;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.addMotoboyButton:hover {
+  background-color: #808080;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 600px) {
+  .motoboyList {
+    padding: 10px;
+  }
+
+  .motoboyList li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .motoboyList li img {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .motoboyList .details {
+    padding: 10px;
+  }
+}
