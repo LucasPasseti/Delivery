@@ -5,28 +5,28 @@
   justify-content: center;
 }
 
-.rContainer {
+.lContainer {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.rInput {
+.lInput{
   height: 30px;
   padding: 10px;
 }
 
-.rButton {
+.lButton {
   border: none;
   padding: 10px 20px;
-  background-color: rgb(169, 169, 169);
+  background-color: rgb(169,169,169);
   color: white;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
 }
 
-.rButton:disabled {
+.lButton:disabled{
   background-color: #0071c28c;
   cursor: not-allowed;
 }

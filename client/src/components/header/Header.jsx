@@ -68,8 +68,10 @@ const Header = ({ type }) => {
       >
         <div className="headerList">
           <div className="headerListItem active">
+          <Link className="link" to="/" style={{ textDecoration: "none" }}>
             <FontAwesomeIcon icon={faStreetView} />
             <span>Serviços</span>
+          </Link>
           </div>
           <div className="headerListItem">
             <Link className="link" to="/motoboy" style={{ textDecoration: "none" }}>

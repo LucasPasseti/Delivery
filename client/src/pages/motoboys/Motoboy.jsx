@@ -2,9 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./motoboy.css";
 import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/header/Header";
+
 import { AuthContext } from "../../components/context/AuthContext";
 import { MotoboyContext } from "../../components/context/MotoboyContext";
+import Header from "../../components/header/Header";
 
 const Motoboy = () => {
   const [selectedMotoboy, setSelectedMotoboy] = useState(null);
@@ -23,7 +24,7 @@ const Motoboy = () => {
   return (
     <div>
       <Navbar />
-      <Header type="list" />
+      <Header type="motoboy" />
       <div className="motoboyList">
         <ul>
           {motoboys.map((motoboy) => (
@@ -58,7 +59,7 @@ const Motoboy = () => {
           </div>
         )}
 
-        {!user && (
+        {user && (
           <Link to="/adicionar-motoboy" className="addMotoboyButton">
             Adicionar Motoboy
           </Link>

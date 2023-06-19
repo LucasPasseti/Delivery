@@ -1,16 +1,16 @@
 import Motoboy from "../models/Motoboy.js";
 
 // CREATE
-export const createMotoboy = async (req, res) => {
-  try {
-    const motoboyData = req.body;
-    const motoboy = await Motoboy.create(motoboyData);
-    res.status(201).json(motoboy);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to create motoboy' });
-  }
-};
+export const createMotoboy = async (req, res, next) => {
+  const newMotoboy = new Motoboy(req.body);
 
+  try{
+      const savedMotoboy = await newMotoboy.save();
+      res.status(200).json(savedMotoboy);
+  }catch(err) {
+      next(err);
+  } 
+}
 // UPDATE
 export const updateMotoboy = async (req, res) => {
   try {
