@@ -37,7 +37,7 @@ const NewService = () => {
           data.append("file", file);
           data.append("upload_preset", "upload");
           const uploadRes = await axios.post(
-            "https://api.cloudinary.com/v1_1/lamadev/image/upload",
+            "https://api.cloudinary.com/v1_1/passeti/image/upload",
             data
           );
 
@@ -101,7 +101,7 @@ const NewService = () => {
                 </div>
               ))}
               <div className="formInput">
-                <label>Apresentou</label>
+                <label>Destaque?</label>
                 <select id="featured" onChange={handleChange}>
                   <option value={false}>Não</option>
                   <option value={true}>Sim</option>

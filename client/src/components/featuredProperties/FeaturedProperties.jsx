@@ -19,11 +19,11 @@ const FeaturedProperties = () => {
               />
               <span className="fpName">{item.name}</span>
               <span className="fpCity">{item.city}</span>
-              <span className="fpPrice">Preço inicial R${item.cheapestPrice}</span>
-              {item.rating && <div className="fpRating">
-                <button>{item.rating}</button>
-                <span>Excelent</span>
-              </div>}
+              <span className="fpPrice">Média de preços R${item.cheapestPrice}</span>
+              <div className="fpRating">
+                <button>10.0</button>
+                <span>Excelente</span>
+              </div>
             </div>
           ))}
         </>

@@ -8,7 +8,7 @@ const SearchItem = ({ item }) => {
             <div className="siDesc">
                 <h1 className="siTitle">{item.name}</h1>
                 <span className="siDistance">{item.distance} do Centro</span>
-                <span className="siTaxiOp">Free airport taxi</span>
+                <span className="siOp">A cada 2 entregas, ganhe uma grátis</span>
                 <span className="siSubtitle">
                     Transportes de alta qualidade
                 </span>
@@ -19,13 +19,13 @@ const SearchItem = ({ item }) => {
                 </span>
             </div>
             <div className="siDetails">
-                {item.rating && <div className="siRating">
-                    <span>Excelent</span>
-                    <button>{item.rating}</button>
-                </div>}
+                 <div className="siRating">
+                    <span className="Exe"></span>
+                    <button>10.0</button>
+                </div>
                 <div className="siDetailTexts">
                     <span className="siPrice">${item.cheapestPrice}</span>
-                    <span className="siTaxOp">Incluso taxas</span>
+                    <span className="siOps">Incluso taxas</span>
                     <Link to={`/services/${item._id}`}>
                         <button className="siCheckButton">Ver estabelecimento</button>
                     </Link>

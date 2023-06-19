@@ -16,29 +16,29 @@ const Single = () => {
             <h1 className="title">Informação</h1>
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5VGovSgivrXS8a6N8oPrY1RgnOqJPkTLq68b_cx-0T68fRsnSUhL1lt1HXDhlZhS8s6k&usqp=CAU"
                 alt=""
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Jane Doe</h1>
+                <h1 className="itemTitle">Passeti</h1>
                 <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
+                  <span className="itemKey">E-mail:</span>
+                  <span className="itemValue">lucaspasseti10@gmail.com</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Celular:</span>
-                  <span className="itemValue">+55 17 99726-0114</span>
+                  <span className="itemValue">+55 17 99724-0772</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Address:</span>
                   <span className="itemValue">
-                    Rafael Chiaele Paraiso 74
+                    Rafael Chiaelo, Jardim 86
                   </span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">País:</span>
-                  <span className="itemValue">BR</span>
+                  <span className="itemValue">Brasil</span>
                 </div>
               </div>
             </div>
