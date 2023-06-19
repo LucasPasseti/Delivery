@@ -1,51 +1,69 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .form {
-    width: 100%;
-    max-width: 300px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-  }
-  
-  .form__title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #292929;
-  }
-  
-  .form__group {
-    margin-bottom: 15px;
-  }
-  
-  .form__label {
-    display: block;
-    margin-bottom: 5px;
-    color: #292929;
-  }
-  
-  .form__input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #a9a9a9;
-    border-radius: 4px;
-  }
-  
-  .form__submit-btn {
-    width: 100%;
-    padding: 8px;
-    background-color: #a9a9a9;
-    color: #f5f5f5;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .form__submit-btn:hover {
-    background-color: #808080;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.form__title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #292929;
+}
+
+.form__group {
+  margin-bottom: 15px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 5px;
+  color: #292929;
+}
+
+.form__input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #a9a9a9;
+  border-radius: 4px;
+}
+
+.form__submit-btn {
+  width: 100%;
+  padding: 8px;
+  background-color: #a9a9a9;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form__submit-btn:hover {
+  background-color: #808080;
+}
+
+.form__agenda {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+  margin-top: 5px;
+}
+
+.form__agenda label {
+  display: flex;
+  align-items: center;
+  color: #292929;
+  cursor: pointer;
+}
+
+.form__agenda input[type="checkbox"] {
+  margin-right: 5px;
+}

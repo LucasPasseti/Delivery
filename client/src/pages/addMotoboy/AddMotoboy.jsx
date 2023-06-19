@@ -10,6 +10,8 @@ const AddMotoboy = () => {
   const [status, setStatus] = useState("");
   const [bag, setBag] = useState(false);
   const [photo, setPhoto] = useState(null);
+  const [agenda, setAgenda] = useState([]);
+
   const motoboyContext = useContext(MotoboyContext);
 
   const handleSubmit = async (e) => {
@@ -30,8 +32,8 @@ const AddMotoboy = () => {
           data
         );
         const imageUrl = uploadRes.data.url;
-        
-        // Atualizar o estado no contexto com os dados adicionados, incluindo a URL da foto
+
+        // Atualizar o estado no contexto com os dados adicionados, incluindo a URL da foto e a agenda
         motoboyContext.dispatch({
           type: "ADD_MOTOBOY",
           payload: {
@@ -41,6 +43,7 @@ const AddMotoboy = () => {
             status,
             bag,
             photo: imageUrl,
+            agenda,
           },
         });
 
@@ -51,11 +54,12 @@ const AddMotoboy = () => {
         setStatus("");
         setBag(false);
         setPhoto(null);
+        setAgenda([]);
       } catch (error) {
         console.log(error);
       }
     } else {
-      // Atualizar o estado no contexto com os dados adicionados sem a foto
+      // Atualizar o estado no contexto com os dados adicionados sem a foto e a agenda
       motoboyContext.dispatch({
         type: "ADD_MOTOBOY",
         payload: {
@@ -65,6 +69,7 @@ const AddMotoboy = () => {
           status,
           bag,
           photo: null,
+          agenda,
         },
       });
 
@@ -74,12 +79,23 @@ const AddMotoboy = () => {
       setVehicle("");
       setStatus("");
       setBag(false);
+      setAgenda([]);
     }
   };
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     setPhoto(file);
+  };
+
+  const handleDaySelect = (day) => {
+    if (agenda.includes(day)) {
+      // Remover o dia da agenda se já estiver selecionado
+      setAgenda(agenda.filter((item) => item !== day));
+    } else {
+      // Adicionar o dia à agenda se ainda não estiver selecionado
+      setAgenda([...agenda, day]);
+    }
   };
 
   return (
@@ -145,7 +161,68 @@ const AddMotoboy = () => {
             onChange={handlePhotoChange}
           />
         </div>
-        <button className="form__submit-btn" type="submit">
+        <div className="form__group">
+          <label className="form__label">Dias Disponíveis:</label>
+          <div className="form__agenda">
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Segunda-feira")}
+                onChange={() => handleDaySelect("Segunda-feira")}
+              />
+              Segunda-feira
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Terça-feira")}
+                onChange={() => handleDaySelect("Terça-feira")}
+              />
+              Terça-feira
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Quarta-feira")}
+                onChange={() => handleDaySelect("Quarta-feira")}
+              />
+              Quarta-feira
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Quinta-feira")}
+                onChange={() => handleDaySelect("Quinta-feira")}
+              />
+              Quinta-feira
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Sexta-feira")}
+                onChange={() => handleDaySelect("Sexta-feira")}
+              />
+              Sexta-feira
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Sábado")}
+                onChange={() => handleDaySelect("Sábado")}
+              />
+              Sábado
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={agenda.includes("Domingo")}
+                onChange={() => handleDaySelect("Domingo")}
+              />
+              Domingo
+            </label>
+          </div>
+        </div>
+        <button className="form__button" type="submit">
           Adicionar
         </button>
       </form>

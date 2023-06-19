@@ -9,11 +9,34 @@ import Header from "../../components/header/Header";
 
 const Motoboy = () => {
   const [selectedMotoboy, setSelectedMotoboy] = useState(null);
+  const [selectedDay, setSelectedDay] = useState("");
   const { user } = useContext(AuthContext);
   const { motoboys, addMotoboy } = useContext(MotoboyContext);
 
   const handleMotoboyClick = (motoboy) => {
     setSelectedMotoboy(motoboy);
+  };
+
+  const handleSchedule = () => {
+    // Verificar se há um motoboy selecionado e um dia escolhido
+    if (selectedMotoboy && selectedDay) {
+      // Verificar disponibilidade do motoboy
+      if (selectedMotoboy.status === "Available") {
+        // Agendar com o motoboy
+        console.log("Agendar com o motoboy:", selectedMotoboy.name, "no dia", selectedDay);
+      } else {
+        console.log("Motoboy não está disponível para agendamento");
+      }
+    }
+  };
+
+  // Função para obter os dias disponíveis do motoboy selecionado
+  const getAvailableDays = () => {
+    if (selectedMotoboy) {
+      const availableDays = selectedMotoboy.agenda.map((day) => day);
+      return availableDays;
+    }
+    return [];
   };
 
   // Salvar motoboys no localStorage ao adicionar um novo motoboy
@@ -53,9 +76,25 @@ const Motoboy = () => {
               Status:{" "}
               {selectedMotoboy.status === "Available" ? "Disponível" : "Ocupado"}
             </p>
-            <p>Avaliação: {selectedMotoboy.rating}</p>
-            <p>Bag: {selectedMotoboy.bag ? "Sim" : "Não"}</p>
-            <button onClick={() => setSelectedMotoboy(null)}>Fechar</button>
+            <div className="daySelector">
+              <h4>Selecione um dia:</h4>
+              <select
+                value={selectedDay}
+                onChange={(e) => setSelectedDay(e.target.value)}
+              >
+                <option value="">Selecione o dia</option>
+                {getAvailableDays().map((day) => (
+                  <option key={day} value={day}>
+                    {day}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <Link to="/" >
+            <button className="scheduleButton" onClick={handleSchedule}> 
+              Agendar            
+            </button>
+            </Link>
           </div>
         )}
 
