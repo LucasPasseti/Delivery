@@ -1,73 +1,90 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 import "./reserve.css";
-import useFetch from "../../hooks/useFetch";
-import {useContext, useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../context/SearchContext";
 
 const Reserve = ({ setOpen, serviceId }) => {
-  const [selectedProducts, setSelectedProducts] = useState([]);
   const { data, loading, error } = useFetch(`/services/product/${serviceId}`);
-  const { dates } = useContext(SearchContext);
-
-  const getDatesInRange = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-
-    const date = new Date(start.getTime());
-
-    const dates = [];
-
-    while (date <= end) {
-      dates.push(new Date(date).getTime());
-      date.setDate(date.getDate() + 1);
-    }
-
-    return dates;
-  };
-
-  const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
-
-  const isAvailable = (productNumber) => {
-    const isFound = productNumber.unavailableDates.some((date) =>
-      alldates.includes(new Date(date).getTime())
-    );
-
-    return !isFound;
-  };
-
-  const handleSelect = (e) => {
-    const checked = e.target.checked;
-    const value = e.target.value;
-    setSelectedProducts(
-      checked
-        ? [...selectedProducts, value]
-        : selectedProducts.filter((item) => item !== value)
-    );
-  };
+  const [quantities, setQuantities] = useState({});
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [purchaseComplete, setPurchaseComplete] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const containerRef = useRef(null);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    let total = 0;
+
+    data.forEach((item) => {
+      const quantity = quantities[item._id] || 0;
+      total += item.price * quantity;
+    });
+
+    setTotalPrice(total);
+  }, [data, quantities]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setOpen]);
+
   const handleClick = async () => {
-    try {
-      await Promise.all(
-        selectedProducts.map((productId) => {
-          const res = axios.put(`/products/availability/${productId}`, {
-            dates: alldates,
-          });
-          return res.data;
-        })
-      );
-      setOpen(false);
-      navigate("/");
-    } catch (err) {}
+    // Placeholder logic for processing the purchase
+    console.log("Processing purchase...");
+
+    // Simulating a delay for payment processing (2 seconds)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // Set purchaseComplete state to true
+    setPurchaseComplete(true);
   };
+
+  const handlePaymentMethodChange = (method) => {
+    setPaymentMethod(method);
+  };
+
+  const handlePayment = () => {
+    // Placeholder logic for handling the payment
+    console.log("Processing payment...");
+
+    // Simulating a delay for payment processing (2 seconds)
+    setTimeout(() => {
+      // Refresh the page after payment is completed
+      navigate("/", { replace: true });
+    }, 2000);
+  };
+
+  const handleQuantityChange = (itemId, quantity) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: quantity,
+    }));
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error occurred while fetching data.</div>;
+  }
+
   return (
     <div className="reserve">
-      <div className="rContainer">
+      <div className="rContainer" ref={containerRef}>
         <FontAwesomeIcon
           icon={faCircleXmark}
           className="rClose"
@@ -80,28 +97,71 @@ const Reserve = ({ setOpen, serviceId }) => {
               <div className="rTitle">{item.title}</div>
               <div className="rDesc">{item.desc}</div>
               <div className="rMax">
-                Quantidade: <b>{item.maxPeople}</b>
+                Quantidade:{" "}
+                <input
+                  type="number"
+                  min={0}
+                  max={item.maxPeople}
+                  value={quantities[item._id] || 0}
+                  onChange={(e) =>
+                    handleQuantityChange(item._id, parseInt(e.target.value))
+                  }
+                />
               </div>
-              <div className="rPrice">{item.price}</div>
-            </div>
-            <div className="rSelectProducts">
-              {item.productNumbers.map((productNumber) => (
-                <div className="product">
-                  <label>{productNumber.number}</label>
-                  <input
-                    type="checkbox"
-                    value={productNumber._id}
-                    onChange={handleSelect}
-                    disabled={!isAvailable(productNumber)}
-                  />
-                </div>
-              ))}
+              <div className="rPrice">
+                Preço: R$ {item.price * (quantities[item._id] || 0)}
+              </div>
             </div>
           </div>
         ))}
-        <button onClick={handleClick} className="rButton">
-          Encerrar Compra
-        </button>
+        <div className="rTotalPrice">
+          Total: R$ {totalPrice.toFixed(2)}
+        </div>
+        {!purchaseComplete ? (
+          <button onClick={handleClick} className="rButton">
+            Encerrar Compra
+          </button>
+        ) : (
+          <div className="paymentMethod">
+            <span>Escolha o método de pagamento:</span>
+            <div>
+              <input
+                type="radio"
+                id="creditCard"
+                name="paymentMethod"
+                value="creditCard"
+                checked={paymentMethod === "creditCard"}
+                onChange={() => handlePaymentMethodChange("creditCard")}
+              />
+              <label htmlFor="creditCard">Cartão de Crédito</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="debitCard"
+                name="paymentMethod"
+                value="debitCard"
+                checked={paymentMethod === "debitCard"}
+                onChange={() => handlePaymentMethodChange("debitCard")}
+              />
+              <label htmlFor="debitCard">Cartão de Débito</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="cash"
+                name="paymentMethod"
+                value="cash"
+                checked={paymentMethod === "cash"}
+                onChange={() => handlePaymentMethodChange("cash")}
+              />
+              <label htmlFor="cash">Dinheiro</label>
+            </div>
+            <button className="rButton" onClick={handlePayment}>
+              Pagar com {paymentMethod}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
