@@ -1,0 +1,54 @@
+.delivery {
+    width: 100%;
+    display: flex;
+  
+    .deliveryContainer {
+      flex: 6;
+  
+      .top,
+      .bottom {
+        box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        padding: 10px;
+        margin: 20px;
+        display: flex;
+  
+        h1 {
+          color: lightgray;
+          font-size: 20px;
+        }
+      }
+  
+      .bottom {
+        table {
+          width: 100%;
+          border-collapse: collapse;
+  
+          th,
+          td {
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+            text-align: left;
+          }
+  
+          th {
+            background-color: lightgray;
+            color: white;
+            font-weight: bold;
+          }
+  
+          tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .delivery .deliveryContainer .bottom table {
+      td,
+      th {
+        font-size: 14px;
+      }
+    }
+  }

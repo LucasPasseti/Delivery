@@ -12,6 +12,7 @@ import { AuthContext } from "./context/AuthContext";
 import { serviceColumns, productColumns, userColumns } from "./datatablesource";
 import NewService from "./pages/newService/NewService";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Delivery from "./pages/Delivery/Delivery"; // Importe o componente de entrega
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -87,7 +88,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewService  />
+                    <NewService />
                   </ProtectedRoute>
                 }
               />
@@ -113,11 +114,19 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewProduct  />
+                    <NewProduct />
                   </ProtectedRoute>
                 }
               />
             </Route>
+            <Route
+              path="delivery"
+              element={
+                <ProtectedRoute>
+                  <Delivery />
+                </ProtectedRoute>
+              }
+            /> {/* Rota de entrega */}
           </Route>
         </Routes>
       </BrowserRouter>

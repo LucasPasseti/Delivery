@@ -5,43 +5,43 @@ const Footer = () => {
     <div className="footer">
       <div className="fLists">
         <ul className="fList">
-          <li className="fListItem">Países</li>
-          <li className="fListItem">Regiões</li>
-          <li className="fListItem">Cidades</li>
-          <li className="fListItem">Distritos</li>
-          <li className="fListItem">Motos</li>
-          <li className="fListItem">Estabelecimentos</li>
+          <li className="fListItem"><a href="https://buscacep.com.br/">Países</a></li>
+          <li className="fListItem"><a href="https://buscacep.com.br/">Regiões</a></li>
+          <li className="fListItem"><a href="https://buscacep.com.br/">Cidades</a></li>
+          <li className="fListItem"><a href="https://buscacep.com.br/">Distritos</a></li>
+          <li className="fListItem"><a href="https://www.yamaha-motor.com">Motos</a></li>
+          <li className="fListItem"><a href="https://cnes.datasus.gov.br/pages/estabelecimentos/consulta.jsp">Estabelecimentos</a></li>
         </ul>
         <ul className="fList">
-          <li className="fListItem">Estabelecimentos </li>
-          <li className="fListItem">Carros </li>
-          <li className="fListItem">Motos </li>
-          <li className="fListItem">Bicicletas</li>
-          <li className="fListItem">Comidas</li>
-          <li className="fListItem">Propiedades</li>
+          <li className="fListItem"><a href="hhttps://cnes.datasus.gov.br/pages/estabelecimentos/consulta.jsp">Estabelecimentos</a></li>
+          <li className="fListItem"><a href="https://www.webmotors.com.br/">Carros</a></li>
+          <li className="fListItem"><a href="https://www.yamaha-motor.com">Motos</a></li>
+          <li className="fListItem"><a href="https://www.trekbikes.com">Bicicletas</a></li>
+          <li className="fListItem"><a href="https://www.ubereats.com">Comidas</a></li>
+          <li className="fListItem"><a href="https://www.zillow.com">Propiedades</a></li>
         </ul>
         <ul className="fList">
-          <li className="fListItem">Lugares para pedir </li>
-          <li className="fListItem">Avaliações</li>
-          <li className="fListItem">Artigos de Delivery </li>
-          <li className="fListItem">Comunidades de Motoboy </li>
-          <li className="fListItem">Ofertas sazonais </li>
+          <li className="fListItem"><a href="https://www.doordash.com">Lugares para pedir</a></li>
+          <li className="fListItem"><a href="https://www.yelp.com">Avaliações</a></li>
+          <li className="fListItem"><a href="https://www.forbes.com">Artigos de Delivery</a></li>
+          <li className="fListItem"><a href="https://www.reddit.com/r/motoboy">Comunidades de Motoboy</a></li>
+          <li className="fListItem"><a href="https://www.groupon.com">Ofertas sazonais</a></li>
         </ul>
         <ul className="fList">
-          <li className="fListItem">Aluguel de Motos </li>
-          <li className="fListItem">Localizador de Motoqueiros</li>
-          <li className="fListItem">Entregas Reservadas </li>
-          <li className="fListItem">Agentes de Entregas </li>
+          <li className="fListItem"><a href="https://www.rentalmotorbike.com">Aluguel de Motos</a></li>
+          <li className="fListItem"><a href="https://www.riderhq.com">Localizador de Motoqueiros</a></li>
+          <li className="fListItem"><a href="https://www.doordash.com">Entregas Reservadas</a></li>
+          <li className="fListItem"><a href="https://www.ubereats.com/agency">Agentes de Entregas</a></li>
         </ul>
         <ul className="fList">
-          <li className="fListItem">Serviços</li>
-          <li className="fListItem">Preciso de Ajuda</li>
-          <li className="fListItem">Carreiras</li>
-          <li className="fListItem">Sustentabilidade</li>
-          <li className="fListItem">Centro da Imprensa</li>
-          <li className="fListItem">Centro de Rescursos de Segurança</li>
-          <li className="fListItem">Relações com Investidores</li>
-          <li className="fListItem">Termos & Condições</li>
+          <li className="fListItem"><a href="https://www.example.com/servicos">Serviços</a></li>
+          <li className="fListItem"><a href="https://www.example.com/preciso-ajuda">Preciso de Ajuda</a></li>
+          <li className="fListItem"><a href="https://www.example.com/carreiras">Carreiras</a></li>
+          <li className="fListItem"><a href="https://www.example.com/sustentabilidade">Sustentabilidade</a></li>
+          <li className="fListItem"><a href="https://www.example.com/centro-imprensa">Centro da Imprensa</a></li>
+          <li className="fListItem"><a href="https://www.example.com/centro-recursos-seguranca">Centro de Recursos de Segurança</a></li>
+          <li className="fListItem"><a href="https://www.example.com/relacoes-investidores">Relações com Investidores</a></li>
+          <li className="fListItem"><a href="https://www.example.com/termos-condicoes">Termos & Condições</a></li>
         </ul>
       </div>
       <div className="fText">Copyright © 2023 MotoLivre.</div>

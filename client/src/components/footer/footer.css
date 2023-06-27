@@ -23,6 +23,16 @@
     transition: ease-in-out;
   }
 
-  .fListItem:hover {
+  .fListItem a{
+    margin-bottom: 10px;
+    color: black;
+    cursor: pointer;
+    transition: ease-in-out;
+    text-decoration: none;
+    font-style: none;
+  }
+
+  .fListItem a:hover {
     color: rgb(169,169,169);
   }
+  

@@ -90,10 +90,10 @@ const Motoboy = () => {
                 ))}
               </select>
             </div>
-            <Link to="/" >
-            <button className="scheduleButton" onClick={handleSchedule}> 
-              Agendar            
-            </button>
+            <Link to="/">
+              <button className="scheduleButton" onClick={handleSchedule}>
+                Agendar
+              </button>
             </Link>
           </div>
         )}
